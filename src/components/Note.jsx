@@ -29,8 +29,8 @@ class Note extends Component {
   }
   renderNote = () => {
     return (
-      <div onClick={this.editNote}>
-        <span className="task">{this.props.task}</span>
+      <div>
+        <span className="task" onClick={this.editNote}>{this.props.task}</span>
         <button className="delete-note" onClick={this.props.onDelete}>x</button>
       </div>
     )
