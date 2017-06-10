@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AltContainer from 'alt-container';
-import Notes from './components/Notes';
-import NoteActions from './actions/NoteActions';
-import NoteStore from './stores/NoteStore';
+import Lanes from './components/Lanes';
+import LaneActions from './actions/LaneActions';
+import LaneStore from './stores/LaneStore';
 import logo from './logo.svg';
 import './App.css';
 
@@ -16,35 +16,22 @@ class App extends Component {
           <h2>Kanban Demo</h2>
         </div>
         <div className="App-intro">
-          <button className="add-note" onClick={this.addNote}>Add Note +</button>
+          <button className="add-lane" onClick={this.addLane}>+</button>
           <AltContainer 
-            stores={[NoteStore]}
-            inject={{ 
-              notes: () => NoteStore.getState().notes
+            stores={[LaneStore]}
+            inject={{
+              lanes: () => LaneStore.getState().lanes
             }}>
-            <Notes onEdit={this.onEdit} onDelete={this.onDelete}/>
+            <Lanes />
           </AltContainer>
         </div>
       </div>
     );
   }
 
-  addNote = () => {
-    NoteActions.create({task:'New Task'});
-  }
-
-  onEdit = (id, task) => {
-    if (!task.trim()) {
-      return;
-    }
-
-    NoteActions.update({id,task});
-  }
-
-  onDelete = (id, e) => {
-    e.preventDefault();
-    NoteActions.delete(id);
-  }
+  addLane = () => {
+    LaneActions.create({name:'New Lane'});
+  }  
 
 }
 

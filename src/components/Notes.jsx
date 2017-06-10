@@ -4,7 +4,7 @@ import Note from './Note';
 
 class Notes extends Component {
   render() {
-    const notesList = this.props.notes.map(note => 
+    const notesList = this.props.notes.map(note =>
       <li className="note" key={note.id}>
         <Note task={note.task} 
           onEdit={this.props.onEdit.bind(null, note.id)} 
