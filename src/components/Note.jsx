@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 
 class Note extends Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      editing: false
-    }
-  }
   checkEnter = (e) => {
     if (e.key === 'Enter') {
-      this.saveNote(e);
+      this.finishEdit(e);
     }
   }
+
   editNote = () => {
     this.setState({editing:true});
   }
+
   renderEdit = () => {
     return <input 
       ref={
@@ -23,10 +19,11 @@ class Note extends Component {
       }
       type="text" 
       autoFocus={true} 
-      onBlur={this.saveNote}
+      onBlur={this.finishEdit}
       defaultValue={this.props.task}
       onKeyPress={this.checkEnter}/>
   }
+
   renderNote = () => {
     return (
       <div>
@@ -35,6 +32,7 @@ class Note extends Component {
       </div>
     )
   }
+
   render() {
     if (this.state.editing) {
       return this.renderEdit();
@@ -42,7 +40,8 @@ class Note extends Component {
 
     return this.renderNote();
   }
-  saveNote = (e) => {
+
+  finishEdit = (e) => {
     const value = e.target.value;
 
     if (this.props.onEdit) { 
@@ -53,6 +52,7 @@ class Note extends Component {
       }); 
     }    
   }
+  
 }
 
 export default Note;

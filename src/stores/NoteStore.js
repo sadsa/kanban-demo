@@ -27,6 +27,10 @@ class NoteStore {
     return note;
   }
 
+  deleteNotesByIds(ids = []) {
+    return ids.forEach(id => this.delete(id));
+  }  
+
   // Accepts an array of ids and returns a list of 
   // note objects that match the ids
   getNotesByIds(ids = []) {
@@ -38,7 +42,7 @@ class NoteStore {
   update(updatedNote) {
     const notes = this.state.notes.map(note => {
       if (note.id === updatedNote.id) {
-        note.task = updatedNote.task;
+        return Object.assign({}, note, updatedNote);
       }
       return note;
     });

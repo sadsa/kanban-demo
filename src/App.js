@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   addLane = () => {
-    LaneActions.create({name:'New Lane'});
+    LaneActions.create({name:'New Lane', editing: true});
   }  
 
 }
